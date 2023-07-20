@@ -3,7 +3,7 @@ import { BookProps } from "../types";
 
 interface BookFormProps {
   book?: BookProps;
-  onSave: (formData: Partial<BookProps>) => void;
+  onSave: (formData: BookProps) => void;
   onClose: () => void;
 }
 
@@ -15,7 +15,7 @@ const BookForm = ({ book, onSave, onClose }: BookFormProps) => {
     description: "",
   };
 
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState<BookProps>(initialFormData);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -46,7 +46,7 @@ const BookForm = ({ book, onSave, onClose }: BookFormProps) => {
       />
       <label>Price</label>
       <input
-        type="text"
+        type="number"
         name="price"
         value={formData.price}
         onChange={handleChange}

@@ -30,7 +30,7 @@ const Table = () => {
     setShowPopUp(true);
   };
 
-  const handleEditBook = (updatedData: Partial<BookProps> | null) => {
+  const handleEditBook = (updatedData: BookProps) => {
     dispatch(updateBook(updatedData));
     setShowPopUp(false);
     setSelectedBook(null);
@@ -41,7 +41,7 @@ const Table = () => {
     setShowPopUp(false);
   };
 
-  const handleAddBook = (newData: Partial<BookProps> | null) => {
+  const handleAddBook = (newData: BookProps) => {
     const newBook: BookProps = {
       id: uuidv4(),
       ...newData,

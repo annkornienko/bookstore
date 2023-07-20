@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteBook } from "../store/bookStoreSlice";
 import { AppDispatch } from "../store/rootReducer";
 import { BookProps } from "../types";
+
 import styles from "./components.module.css";
 
 interface BookComponentProps {
@@ -16,16 +17,18 @@ const Book: React.FC<BookComponentProps> = ({ data, onEdit }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDelete = () => {
-    dispatch(deleteBook(id));
+    id && dispatch(deleteBook(id));
   };
 
   return (
     <tr>
       <td>
-        <button onClick={() => onEdit(data)}>{name}</button>
+        <button onClick={() => onEdit(data)} className={styles.name}>
+          {name}
+        </button>
       </td>
-      <td>{price}</td>
-      <td>{category}</td>
+      <td className={styles.price}>{price}</td>
+      <td className={styles.category}>{category}</td>
       <td>
         <button className={styles.deleteButton} onClick={handleDelete}>
           Delete

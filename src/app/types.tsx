@@ -1,7 +1,9 @@
+export type ID = number | string;
+
 export interface BookProps {
-  id: number | string;
+  id?: ID;
   name: string;
-  price: number;
+  price?: number;
   category: string;
   description?: string;
 }

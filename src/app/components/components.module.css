@@ -78,9 +78,24 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 15px;;
+  margin-bottom: 15px;
 }
 
 .addButton:hover {
   background-color: #218838;
+}
+
+.name {
+  width: 250px;
+  margin-right: 12px;
+}
+
+.price {
+  width: 90px;
+  margin-right: 12px;
+}
+
+.category {
+  width: 140px;
+  margin-right: 12px;
 }

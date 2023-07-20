@@ -2,7 +2,7 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { books } from "../data";
-import { BookProps } from "../types";
+import { BookProps, ID } from "../types";
 interface BookStoreState {
   books: BookProps[];
 }
@@ -18,7 +18,7 @@ const bookStoreSlice = createSlice({
     addBook: (state, action: PayloadAction<BookProps>) => {
       state.books.push(action.payload);
     },
-    deleteBook: (state, action: PayloadAction<number>) => {
+    deleteBook: (state, action: PayloadAction<ID>) => {
       const bookIndex = state.books.findIndex(
         (book) => book.id === action.payload
       );
@@ -28,17 +28,16 @@ const bookStoreSlice = createSlice({
       }
     },
     updateBook: (state, action: PayloadAction<BookProps>) => {
-      const { id, name, price, category, description } = action.payload;
-
-      const idx = state.books.findIndex((book) => book.id === id);
+      const idx = state.books.findIndex(
+        (book) => book.id === action.payload.id
+      );
 
       if (idx !== -1) {
-        state.books[idx] = { id, name, price, category, description };
+        state.books[idx] = { ...action.payload };
       }
     },
   },
 });
 
-// export const selectBooks = (state: BookStoreState): Book[] => state.books;
 export const { addBook, deleteBook, updateBook } = bookStoreSlice.actions;
 export default bookStoreSlice.reducer;
