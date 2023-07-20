@@ -1,14 +1,16 @@
 "use client";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useState, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../store/rootReducer";
 import Book from "./book";
 import PopUp from "./popup";
-import BookForm from "./bookForm";
+// import BookForm from "./bookForm";
 import { BookProps } from "../types";
 import { addBook, updateBook } from "../store/bookStoreSlice";
 import styles from "./components.module.css";
+
+const LazyBookForm = lazy(() => import("./bookForm"));
 
 const tableHeaderData = ["name", "price", "category"];
 
@@ -72,13 +74,13 @@ const Table = () => {
       {showPopUp && (
         <PopUp>
           {selectedBook ? (
-            <BookForm
+            <LazyBookForm
               book={selectedBook}
               onSave={(updateData) => handleEditBook(updateData)}
               onClose={onClosePopUp}
             />
           ) : (
-            <BookForm
+            <LazyBookForm
               onSave={(newData) => handleAddBook(newData)}
               onClose={onClosePopUp}
             />
