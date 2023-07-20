@@ -1,5 +1,3 @@
-import { reduceEachLeadingCommentRange } from "typescript";
-
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -10,4 +8,3 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
-
